@@ -1,8 +1,9 @@
-package dev.devlopment.passwordmanager.MVVM
-
 import android.app.Application
-import androidx.lifecycle.*
-import dev.devlopment.passwordmanager.Security.CryptoManager
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
+import dev.devlopment.passwordmanager.Crypto.CryptoManager
+import dev.devlopment.passwordmanager.MVVM.PasswordRepository
 import dev.devlopment.passwordmanager.Room.AppDatabase
 import dev.devlopment.passwordmanager.Room.Password
 import kotlinx.coroutines.launch

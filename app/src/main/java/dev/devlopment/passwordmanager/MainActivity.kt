@@ -1,11 +1,11 @@
 package dev.devlopment.passwordmanager
 
+import PasswordViewModel
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import dev.devlopment.passwordmanager.MVVM.PasswordViewModel
 import dev.devlopment.passwordmanager.MVVM.PasswordViewModelFactory
 import dev.devlopment.passwordmanager.Screens.PasswordManagerApp
 import dev.devlopment.passwordmanager.ui.theme.PasswordManagerTheme

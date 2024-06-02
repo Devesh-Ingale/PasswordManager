@@ -1,5 +1,6 @@
 package dev.devlopment.passwordmanager.Screens
 
+import PasswordViewModel
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -41,7 +42,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import dev.devlopment.passwordmanager.MVVM.PasswordViewModel
 import dev.devlopment.passwordmanager.Room.Password
 import kotlinx.coroutines.launch
 import androidx.lifecycle.viewmodel.compose.viewModel
