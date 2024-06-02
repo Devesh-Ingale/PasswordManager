@@ -1,4 +1,4 @@
-package dev.devlopment.passwordmanager.Crypto
+package dev.devlopment.passwordmanager.Security
 
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyProperties

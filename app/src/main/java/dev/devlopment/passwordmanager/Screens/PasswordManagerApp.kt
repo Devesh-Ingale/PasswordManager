@@ -27,6 +27,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -91,7 +92,8 @@ fun PasswordManagerApp(viewModel: PasswordViewModel = viewModel()) {
                         }
                         coroutineScope.launch { bottomSheetState.hide() }
                         isBottomSheetVisible = false
-                    }
+                    },
+                    onDecrypt = { encryptedPassword -> viewModel.decryptPassword(encryptedPassword) }
                 )
             }
         )
@@ -156,6 +158,8 @@ fun PasswordManagerApp(viewModel: PasswordViewModel = viewModel()) {
         }
     }
 }
+
+
 
 @Composable
 fun ClickPasswordModalBottomSheet(
@@ -236,15 +240,19 @@ fun ClickPasswordModalBottomSheet(
 fun PasswordModalBottomSheet(
     password: Password?,
     onDismiss: () -> Unit,
-    onSave: (String, String, String) -> Unit
+    onSave: (String, String, String) -> Unit,
+    onDecrypt: (String) -> String
 ) {
     var accountType by remember { mutableStateOf(password?.accountType ?: "") }
     var username by remember { mutableStateOf(password?.username ?: "") }
-    var passwordValue by remember { mutableStateOf(password?.password ?: "") }
+    var passwordValue by remember { mutableStateOf("") }
     var action by remember { mutableStateOf("Add New Account") }
 
-    if (password != null) {
-        action = "Update Account"
+    LaunchedEffect(password) {
+        if (password != null) {
+            action = "Update Account"
+            passwordValue = onDecrypt(password.password)
+        }
     }
 
     Column(modifier = Modifier
@@ -298,3 +306,5 @@ fun PasswordModalBottomSheet(
         }
     }
 }
+
+

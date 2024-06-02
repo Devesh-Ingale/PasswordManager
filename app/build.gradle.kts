@@ -83,7 +83,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
-   // implementation ("androidx.biometric:biometric:1.2.0-alpha05")
+    implementation ("androidx.biometric:biometric:1.2.0-alpha05")
 
 
 }
