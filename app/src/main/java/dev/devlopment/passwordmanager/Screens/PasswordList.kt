@@ -1,5 +1,7 @@
 package dev.devlopment.passwordmanager.Screens
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -41,21 +43,38 @@ fun PasswordItem(password: Password, onClick: (Password) -> Unit) {
             .padding(16.dp)
             .clickable { onClick(password) },
         shape = RoundedCornerShape(30.dp),
-        elevation = CardDefaults.elevatedCardElevation(55.dp),
+        elevation = CardDefaults.elevatedCardElevation(8.dp),
         colors = CardDefaults.cardColors(containerColor = Color.White),
+        border = BorderStroke(2.dp, color = Color.Gray)
     ) {
-        Row(modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically) {
-            Spacer(modifier = Modifier.padding(start = 15.dp))
-            Text(password.accountType, style = MaterialTheme.typography.headlineLarge, color = Color.Black, fontWeight = FontWeight.Bold)
-            Spacer(modifier = Modifier.padding(top = 35.dp, start = 16.dp, bottom = 35.dp))
-            Text("********", style = MaterialTheme.typography.headlineMedium,color = Color.Gray)
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.White)
+                .padding(vertical = 16.dp, horizontal = 20.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = password.accountType,
+                style = MaterialTheme.typography.headlineLarge,
+                color = Color.Black,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(modifier = Modifier.weight(0.1f))
+            Text(
+                modifier = Modifier.padding(top = 5.dp),
+                text = "********",
+                style = MaterialTheme.typography.headlineMedium,
+                color = Color.Gray
+            )
             Spacer(modifier = Modifier.weight(1f))
-            IconButton(onClick = { onClick(password) }){
+            IconButton(onClick = { onClick(password) }) {
                 Icon(Icons.Default.KeyboardArrowRight, contentDescription = null)
             }
         }
-
-
     }
 }
+
+
+

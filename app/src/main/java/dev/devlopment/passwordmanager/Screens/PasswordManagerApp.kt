@@ -118,6 +118,9 @@ fun PasswordManagerApp(viewModel: PasswordViewModel = viewModel()) {
                     onDelete = { selectedPassword?.let { viewModel.delete(password = it) }
                         coroutineScope.launch { bottomSheetState.hide() }
                         isClickBottomSheetVisible = false
+                    },
+                    onDecrypt = { password ->
+                        viewModel.decryptPassword(password)
                     }
                 )
             }
@@ -155,15 +158,21 @@ fun PasswordManagerApp(viewModel: PasswordViewModel = viewModel()) {
 }
 
 @Composable
-fun ClickPasswordModalBottomSheet(password: Password?, onDismiss: () -> Unit, onEdit: () -> Unit, onDelete: () -> Unit) {
+fun ClickPasswordModalBottomSheet(
+    password: Password?,
+    onDismiss: () -> Unit,
+    onEdit: () -> Unit,
+    onDelete: () -> Unit,
+    onDecrypt: (String) -> String
+) {
     var accountType by remember { mutableStateOf(password?.accountType) }
     var username by remember { mutableStateOf(password?.username) }
-    var passwordValue by remember { mutableStateOf(password?.password) }
+    var encryptedPassword by remember { mutableStateOf(password?.password) }
     var isPasswordVisible = remember { mutableStateOf(false) }
-    var action = remember { mutableStateOf("********") }
+    var decryptedPassword by remember { mutableStateOf("********") }
 
-    if (isPasswordVisible.value) {
-        action.value = passwordValue ?: ""
+    if (isPasswordVisible.value && encryptedPassword != null) {
+        decryptedPassword = onDecrypt(encryptedPassword!!)
     }
 
     Column(modifier = Modifier.padding(8.dp)) {
@@ -177,7 +186,7 @@ fun ClickPasswordModalBottomSheet(password: Password?, onDismiss: () -> Unit, on
         Spacer(modifier = Modifier.padding(20.dp))
         Text("Password", fontWeight = FontWeight.Light, color = Color.DarkGray)
         Row {
-            Text(action.value, fontWeight = FontWeight.Bold, color = Color.Black, style = MaterialTheme.typography.headlineMedium)
+            Text(decryptedPassword, fontWeight = FontWeight.Bold, color = Color.Black, style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.weight(1f))
             Icon(
                 painter = painterResource(id = R.drawable.baseline_remove_red_eye_24),
@@ -220,6 +229,7 @@ fun ClickPasswordModalBottomSheet(password: Password?, onDismiss: () -> Unit, on
         }
     }
 }
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
