@@ -74,5 +74,3 @@ Devesh Ingale - [LinkedIn](https://www.linkedin.com/in/devesh-ingale/) - deveshi
 Project Link: [https://github.com/Devesh-Ingale/PasswordManager](https://github.com/Devesh-Ingale/PasswordManager)
 
 ---
-
-This README provides an overview of the PasswordManager project, including its features, technologies used, installation instructions, usage guidelines, contribution guidelines, and contact information. Adjust the paths to screenshots and other details as per your project structure and preferences.
