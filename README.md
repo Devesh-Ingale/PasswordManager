@@ -1,6 +1,4 @@
-Certainly! Below is a GitHub README template for your PasswordManager project:
 
----
 
 # PasswordManager
 
